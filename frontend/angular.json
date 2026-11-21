@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "services-site-frontend": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "site",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "outputPath": "dist/services-site-frontend",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "ssr": { "entry": "server.ts" },
+            "tsConfig": "tsconfig.app.json",
+            "polyfills": ["zone.js"],
+            "assets": [{ "glob": "**/*", "input": "public" }],
+            "styles": ["src/styles.css"]
+          },
+          "configurations": {
+            "production": { "optimization": true, "outputHashing": "all" },
+            "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "options": { "proxyConfig": "proxy.conf.json" },
+          "configurations": {
+            "production": { "buildTarget": "services-site-frontend:build:production" },
+            "development": { "buildTarget": "services-site-frontend:build:development" }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  }
+}

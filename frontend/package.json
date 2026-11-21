@@ -1,0 +1,36 @@
+{
+  "name": "services-site-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "serve:ssr": "node dist/services-site-frontend/server/server.mjs"
+  },
+  "dependencies": {
+    "@angular/common": "22.0.0",
+    "@angular/compiler": "22.0.0",
+    "@angular/core": "22.0.0",
+    "@angular/forms": "^22.0.0",
+    "@angular/platform-browser": "22.0.0",
+    "@angular/platform-server": "22.0.0",
+    "@angular/router": "22.0.0",
+    "@angular/ssr": "22.0.0",
+    "express": "5.1.0",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1",
+    "zone.js": "0.15.1"
+  },
+  "devDependencies": {
+    "@angular/build": "22.0.0",
+    "@angular/cli": "22.0.0",
+    "@angular/compiler-cli": "22.0.0",
+    "@types/express": "5.0.3",
+    "@types/node": "24.0.10",
+    "typescript": "6.0.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.0": true,
+    "esbuild@0.27.7": true
+  }
+}

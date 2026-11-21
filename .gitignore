@@ -1,0 +1,22 @@
+# Secrets and local configuration
+.env
+**/.env
+!.env.example
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+coverage/
+npm-debug.log*
+
+# Java / Maven / IDE
+target/
+.mvn/wrapper/maven-wrapper.jar
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
