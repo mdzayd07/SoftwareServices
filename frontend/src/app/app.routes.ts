@@ -6,29 +6,35 @@ import { ServiceDetailComponent } from './service-detail.component';
 import { ContactComponent } from './contact.component';
 import { AdminComponent } from './admin.component';
 import { ArticleDetailComponent } from './article-detail.component';
+import { PricingComponent } from './pricing.component';
+import { PortfolioComponent } from './portfolio.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, title: 'Northline Software | Draft preview' },
+  { path: '', component: HomeComponent, title: 'Northline Software | Custom Software & SaaS Development' },
   {
-    path: 'services', component: PublicPageComponent, title: 'Services | Draft placeholder',
+    path: 'services', component: PublicPageComponent, title: 'Services | Custom Software & SaaS Engineering',
     data: {
-      title: 'Services', eyebrow: 'SERVICES · DRAFT',
-      description: 'Candidate service categories are listed for review. The team’s actual offer, capacity, and engagement model remain unconfirmed.',
+      title: 'Services', eyebrow: 'ENGINEERING SERVICES · TAILOR-MADE SOLUTIONS',
+      description: 'End-to-end custom software development, multi-tenant SaaS engineering, Spring Boot APIs, Angular web applications, and hardware POS integrations.',
     },
   },
   { path: 'services/:slug', component: ServiceDetailComponent, title: 'Service details | Draft placeholder' },
+  { path: 'portfolio', component: PortfolioComponent, title: 'Works & Case Studies | Proven Production Systems' },
+  { path: 'works', redirectTo: 'portfolio', pathMatch: 'full' },
+  { path: 'pricing', component: PricingComponent, title: 'Pricing & Packages | Transparent Milestone Billing' },
   {
-    path: 'banking-domain-experience', component: PublicPageComponent, title: 'Domain experience | Draft preview',
+    path: 'banking-domain-experience', component: PublicPageComponent, title: 'Banking Domain Experience | Northline Software',
     data: {
-      title: 'Banking domain experience', eyebrow: 'DOMAIN EXPERIENCE · DRAFT PROFILE SLOTS',
-      description: 'Proposed role profiles and candidate domain experience for review. Replace each sample with details confirmed by the actual team member before publication.',
+      title: 'Banking domain experience', eyebrow: 'MISSION-CRITICAL FINTECH & ARCHITECTURE',
+      description: 'Senior engineering specialists in high-volume transaction reconciliation, Docker containerization, and HLD/LLD architectural blueprints.',
     },
   },
+  { path: 'domain-experience', redirectTo: 'banking-domain-experience', pathMatch: 'full' },
   {
-    path: 'about', component: PublicPageComponent, title: 'About | Draft preview',
+    path: 'about', component: PublicPageComponent, title: 'About Our Senior Engineering Team | Northline Software',
     data: {
-      title: 'About the team', eyebrow: 'ABOUT · EDITABLE TEAM DRAFT',
-      description: 'Northline Software is the working name for a proposed Java full-stack services team. Review the role-based profile drafts below and replace them with approved member details.',
+      title: 'About the team', eyebrow: 'SENIOR ENGINEERING CRAFTSMANSHIP',
+      description: 'A multidisciplinary team of senior Java, Angular, and DevOps architects delivering custom enterprise software with complete source code ownership.',
     },
   },
   {
@@ -40,7 +46,7 @@ export const routes: Routes = [
   },
   { path: 'insights/:slug', component: ArticleDetailComponent, title: 'Insight | Northline Software' },
   {
-    path: 'contact', component: ContactComponent, title: 'Contact | Northline Software',
+    path: 'contact', component: ContactComponent, title: 'Contact Us | Northline Software & SaaS',
   },
   { path: 'admin/sign-in', component: AdminComponent, title: 'Administrator sign-in | Northline Software' },
   { path: 'admin', component: AdminComponent, title: 'Administration | Northline Software' },

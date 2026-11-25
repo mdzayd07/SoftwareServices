@@ -49,8 +49,8 @@ public class LeadController {
         var id = UUID.randomUUID();
         var source = request.sourcePath() != null && request.sourcePath().startsWith("/") && !request.sourcePath().startsWith("//")
                 ? request.sourcePath().substring(0, Math.min(500, request.sourcePath().length())) : null;
-        db.update("INSERT INTO lead (id,name,email,organization,project_type,message,timeline,budget_range,consent_to_contact,source_path,status) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                id, request.name().trim(), request.email().trim().toLowerCase(), clean(request.organization()), request.projectType(),
+        db.update("INSERT INTO lead (id,name,email,phone,organization,project_type,message,timeline,budget_range,consent_to_contact,source_path,status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                id, request.name().trim(), request.email().trim().toLowerCase(), clean(request.phone()), clean(request.organization()), request.projectType(),
                 request.message().trim(), request.timeline(), request.budgetRange(), true, source, "NEW");
         notifyAdmin(request, id.toString());
         return Map.of("message", "Thank you. Your enquiry has been received.");
@@ -69,7 +69,8 @@ public class LeadController {
             var mail = new SimpleMailMessage();
             mail.setFrom(mailFrom); mail.setTo(notifyTo); mail.setSubject("New software services enquiry");
             mail.setText("A new enquiry was stored (reference " + reference + ").\nName: " + request.name()
-                    + "\nEmail: " + request.email() + "\nOrganization: " + clean(request.organization())
+                    + "\nEmail: " + request.email() + "\nPhone/WhatsApp: " + clean(request.phone())
+                    + "\nOrganization: " + clean(request.organization())
                     + "\nProject type: " + request.projectType() + "\nMessage: " + request.message());
             sender.send(mail);
         } catch (RuntimeException ignored) {
@@ -89,9 +90,10 @@ public class LeadController {
     public record LeadRequest(
             @NotBlank @Size(min=2,max=100) String name,
             @NotBlank @Email @Size(max=254) String email,
+            @Size(max=40) String phone,
             @Size(max=150) String organization,
             @NotBlank @Size(max=80) String projectType,
-            @NotBlank @Size(min=20,max=5000) String message,
+            @NotBlank @Size(min=5,max=5000) String message,
             @Size(max=80) String timeline,
             @Size(max=80) String budgetRange,
             boolean consentToContact,

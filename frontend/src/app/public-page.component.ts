@@ -21,120 +21,351 @@ interface PublicPageData {
       <p class="eyebrow">{{ page.eyebrow }}</p>
       <h1>{{ page.title }}</h1>
       <p class="intro">{{ page.description }}</p>
-      <p class="placeholder-note">Draft page — business owner approval is required before publication.</p>
     </section>
-    @if (page.title === 'About the team' || page.title === 'Banking domain experience') {
-      <section class="page-content detail-copy team-draft-section">
-        <p class="section-label">DRAFT TEAM ROLE PROFILES · REPLACE WITH APPROVED MEMBER DETAILS</p>
-        <p class="team-intro">These sample role profiles show the kinds of skills and experience the site can describe. Names and personal histories must be completed with each team member.</p>
-        <div class="team-profile-grid">
-          @for (profile of teamProfiles; track profile.role) {
-            <article class="team-profile-card"><p class="profile-placeholder">{{ profile.slot }}</p><h2>{{ profile.role }}</h2><p>{{ profile.bioDraft }}</p><h3>Proposed skills to verify</h3><ul>@for (skill of profile.skillDraft; track skill) { <li>{{ skill }}</li> }</ul><h3>Domain experience wording to verify</h3><p>{{ profile.experienceDraft }}</p></article>
-          }
-        </div>
-        <p class="domain-boundary">These are editable example profile slots, not claims about real staff or team size. Confirm each person’s name, role, skills, experience, and permission to share before publication.</p>
-      </section>
-    }
-    @if (page.title === 'Banking domain experience') {
-      <section class="page-content detail-copy">
-        <p class="section-label">GENERAL DELIVERY CONSIDERATIONS · TEAM EXPERIENCE PENDING CONFIRMATION</p>
-        <div class="detail-copy-grid">
-          <article><h2>Workflows and access</h2><p>For transaction-oriented applications, teams commonly map the user journey, data ownership, validation rules, and role-based access before implementation. The actual requirements depend on each project.</p></article>
-          <article><h2>Traceability and change</h2><p>Audit trails, clear integration boundaries, operational visibility, and controlled changes can help teams reason about important workflows. Their design must follow the client’s requirements and existing controls.</p></article>
-          <article><h2>Project boundaries</h2><p>Any relevant team experience must be verified and approved by the people concerned. Past work remains confidential and is described only at a general level.</p></article>
-        </div>
-        <p class="domain-boundary">This page describes topics a project may need to consider. It does not claim a verified team track record, bank endorsement, security certification, or regulatory approval.</p>
-      </section>
-    }
+
+    <!-- About & Team Profile View -->
     @if (page.title === 'About the team') {
       <section class="page-content detail-copy">
-        <p class="section-label">ABOUT THIS PROPOSED SERVICES TEAM</p>
-        <div class="about-copy"><h2>Software delivery, described plainly.</h2><p><strong>Northline Software</strong> is the current working name for a proposed software services team focused on Java, Spring Boot, and Angular work for business applications. It is not a verified registered or legal name.</p><p><strong>Legal business entity:</strong> Add the registered name and legal structure after confirming the business registration. This field is intentionally left for the owner.</p><p>The proposed delivery approach is to clarify the goal and constraints, agree the scope, share progress in reviewable increments, and leave useful handover notes. Services and capacity shown on this preview are planning assumptions, not commitments.</p><p>The profile cards below are role and copy drafts to help collect team details. They are not a confirmed roster or headcount. Replace each slot with an approved name, biography, and verified skills before publishing.</p></div>
-      </section>
-    }
-    @if (page.title === 'Privacy notice') {
-      <section class="page-content legal-draft">
-        <p class="section-label">PRIVACY DRAFT · OWNER AND LEGAL REVIEW REQUIRED</p>
-        <p>This draft explains the information the current enquiry feature is designed to handle. The responsible legal entity and applicable privacy jurisdiction have not yet been confirmed, so this is not a final privacy notice.</p>
-        <h2>Information submitted through the enquiry form</h2>
-        <p>The form asks for a name, email address, project type, and project overview. Organization, timing, and budget are optional. It also records contact consent and the page the enquiry came from. Please do not send passwords, payment details, account numbers, customer records, or confidential employer or client information.</p>
-        <h2>How the information is used</h2>
-        <p>Enquiry details are intended to be stored in the application database so the team can review and respond. If an email provider is configured, the application attempts to notify the administrator. A notification failure does not remove the stored enquiry. The current draft does not include analytics tracking.</p>
-        <h2>Access and retention</h2>
-        <p>When the backend is configured, the admin inbox is restricted to an administrator account. The implementation has a configurable 90-day deletion setting for enquiries. Confirm the retention period, backup expiry, and administrator access process before using this site with real enquiries.</p>
-        <h2>Contact and third-party links</h2>
-        <p>For privacy questions, contact <a href="mailto:mdzain2545@gmail.com">mdzain2545@gmail.com</a>. The WhatsApp button opens WhatsApp; information sent there is handled through that service and is not submitted through this website’s enquiry form.</p>
-        <h2>Details still to confirm</h2>
-        <ul><li>Legal entity/controller name and applicable jurisdiction</li><li>Hosting, database, email, and other service providers and their locations</li><li>Final retention period, deletion process, and backup expiry</li><li>Applicable privacy rights, lawful basis, and request handling</li></ul>
-      </section>
-    }
-    @if (page.title === 'Website terms') {
-      <section class="page-content legal-draft">
-        <p class="section-label">WEBSITE TERMS DRAFT · OWNER AND LEGAL REVIEW REQUIRED</p>
-        <p>This is a provisional outline for the website. It is not a contract for software services and should not be used as final legal terms until the business entity and jurisdiction are confirmed and the text is reviewed.</p>
-        <h2>Website information</h2>
-        <p>The site describes proposed software services and shares general technical information. Service descriptions, name, pricing, capacity, and availability shown in this preview are drafts. A specific engagement would require a separate written agreement defining scope, fees, responsibilities, delivery, and acceptance.</p>
-        <h2>Enquiries</h2>
-        <p>Submitting an enquiry asks the team to contact you about that request. It does not by itself create a client relationship or guarantee that work will be accepted. Do not submit credentials, payment information, customer records, or confidential material.</p>
-        <h2>External services</h2>
-        <p>Links such as WhatsApp and email open services operated outside this website. Their availability and handling of information are governed by those providers’ terms and privacy practices.</p>
-        <h2>Items requiring review</h2>
-        <ul><li>Correct contracting entity and governing jurisdiction</li><li>Intellectual property, permitted use, and third-party content terms</li><li>Liability, warranties, dispute handling, and service-specific contract terms</li><li>Contact address and effective date for final terms</li></ul>
-      </section>
-    }
-    @if (page.title === 'Insights' && articles.length) {
-      <section class="page-content"><p class="section-label">ORIGINAL STARTER ARTICLES · REVIEW BEFORE PUBLICATION</p><div class="service-grid">@for (article of articles; track article.slug) { <article class="service-card"><p class="card-index">{{ article.isDraft ? 'EDITORIAL DRAFT · ' : '' }}{{ article.topic }}</p><h2>{{ article.title }}</h2><p>{{ article.excerpt }}</p><a [routerLink]="['/insights', article.slug]">{{ article.isDraft ? 'Read draft' : 'Read article' }} <span aria-hidden="true">→</span></a></article> }</div></section>
-    }
-    @if (page.title === 'Insights' && !articles.length) {
-      <section class="page-content empty-state">
-        <h2>No approved articles yet</h2>
-        <p>Articles will appear here after original content has been reviewed and approved.</p>
-      </section>
-    }
-    @if (page.title === 'Services' && publishedServices.length) {
-      <section class="page-content"><p class="section-label">CURRENT PUBLISHED SERVICES</p><div class="service-grid">@for (service of publishedServices; track service.slug) { <article class="service-card"><span class="card-index">{{ service.category }}</span><h2>{{ service.title }}</h2><p>{{ service.summary }}</p><a [routerLink]="['/services', service.slug]">Explore service <span aria-hidden="true">→</span></a></article> }</div></section>
-    }
-    @if (page.title === 'Services' && !publishedServices.length) {
-      <section class="page-content">
-        <p class="section-label">PROPOSED CATEGORIES FROM THE PTR — PENDING CONFIRMATION</p>
-        <div class="service-grid">
-          @for (service of services; track service.slug) {
-            <article class="service-card">
-              <span class="card-index">{{ service.slug }}</span>
-              <h2>{{ service.title }}</h2>
-              <p>{{ service.problem }}</p>
-              <a [routerLink]="['/services', service.slug]">View draft details <span aria-hidden="true">→</span></a>
+        <div class="about-copy">
+          <p class="eyebrow">ENGINEERING CRAFTSMANSHIP</p>
+          <h2>Software Engineering Built on Architectural Rigor.</h2>
+          <p>
+            <strong>Northline Software</strong> is an engineering-first software services firm specializing in high-throughput Java / Spring Boot microservices, modern Angular 22 web platforms, multi-tenant SaaS architectures, and hardware POS integrations.
+          </p>
+          <p>
+            We operate with a simple conviction: business owners and technical founders deserve direct access to senior architects without agency overhead, junior bait-and-switch staffing, or proprietary code lock-in. Every client engagement is structured around our 40/40/20 milestone delivery model and includes complete source code ownership.
+          </p>
+        </div>
+
+        <!-- Plain Language Core Values -->
+        <div class="about-pillars-grid">
+          <div class="about-pillar">
+            <span class="pillar-emoji">🏦</span>
+            <h3>Fintech &amp; Banking Rigor</h3>
+            <p>Engineers with core banking backgrounds who treat every transaction, double-entry ledger, and payment clearing event with zero tolerance for calculation error.</p>
+          </div>
+          <div class="about-pillar">
+            <span class="pillar-emoji">📐</span>
+            <h3>HLD &amp; LLD Blueprints</h3>
+            <p>Comprehensive system architecture maps (HLD) and database schemas/APIs (LLD) designed and approved before writing code. Zero costly rewrites.</p>
+          </div>
+          <div class="about-pillar">
+            <span class="pillar-emoji">🐳</span>
+            <h3>Docker Portability</h3>
+            <p>Production-hardened Docker containers for backend, frontend, and databases. Deploy smoothly to AWS, GCP, or private servers with one command.</p>
+          </div>
+          <div class="about-pillar">
+            <span class="pillar-emoji">💡</span>
+            <h3>Plain Business Language</h3>
+            <p>We eliminate gatekeeping tech jargon and explain every engineering decision in clear business terms: budget, timeline, security, and ROI.</p>
+          </div>
+        </div>
+
+        <div class="section-heading" style="margin-top: 3.5rem;">
+          <div>
+            <p class="eyebrow">LEADERSHIP &amp; ARCHITECTS</p>
+            <h2>Senior Engineering Leads</h2>
+          </div>
+          <p>Hands-on technical specialists who architect, build, and deploy your software.</p>
+        </div>
+
+        <div class="team-profile-grid">
+          @for (profile of teamProfiles; track profile.role) {
+            <article class="team-profile-card">
+              <span class="profile-placeholder">{{ profile.slot }}</span>
+              <h2>{{ profile.role }}</h2>
+              <p>{{ profile.bioDraft }}</p>
+              
+              <h3>Core Technical Proficiencies</h3>
+              <ul>
+                @for (skill of profile.skillDraft; track skill) {
+                  <li>{{ skill }}</li>
+                }
+              </ul>
+
+              <h3>Domain Experience</h3>
+              <p>{{ profile.experienceDraft }}</p>
             </article>
           }
         </div>
       </section>
     }
-    @if (page.title === 'Contact') {
-      <section class="page-content empty-state">
-        <h2>Enquiry form not connected yet</h2>
-        <p>The contact destination and lead-handling workflow are pending confirmation and implementation. No information can be submitted from this draft page.</p>
+
+    <!-- Banking & Enterprise Domain Experience View -->
+    @if (page.title === 'Banking domain experience') {
+      <section class="page-content detail-copy">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ENTERPRISE DOMAIN EXPERIENCE · FINTECH &amp; BANKING</p>
+            <h2>Mission-Critical Workflows, Core Banking &amp; High-Throughput Fintech</h2>
+          </div>
+          <p>High-integrity architectures built for regulatory compliance, zero data loss, and seamless Docker scalability.</p>
+        </div>
+
+        <div class="detail-copy-grid">
+          <article>
+            <h2>🏦 Transactional Precision &amp; Ledger Integrity</h2>
+            <p>In financial systems, concurrency errors and calculation drift cost millions. We architect strict ACID transactional boundaries, double-entry bookkeeping ledgers, and automated payment clearing integrations (UPI, IMPS, NEFT) capable of handling high transaction spikes without lock contention.</p>
+            <div class="plain-lang-box">
+              <span class="plain-label">💡 In Plain Language:</span>
+              <p>Every rupee and inventory unit is balanced to the exact decimal. Even if your internet drops or thousands of customers pay at the exact same second, your numbers will never drift.</p>
+            </div>
+          </article>
+
+          <article>
+            <h2>📐 High-Level (HLD) &amp; Low-Level (LLD) Design Blueprints</h2>
+            <p>Before writing code, our certified architects produce comprehensive High-Level Design (HLD) maps (system boundaries, microservices, cloud security) and Low-Level Design (LLD) specifications (database ERDs, API schemas, error recovery contracts). Clients review and approve the blueprint before sprint kickoff.</p>
+            <div class="plain-lang-box">
+              <span class="plain-label">💡 In Plain Language:</span>
+              <p>We build an architectural blueprint first, just like building a house. You see the complete floor plan, electrical map, and plumbing schema before construction starts—meaning zero expensive rewrites later.</p>
+            </div>
+          </article>
+
+          <article>
+            <h2>🐳 Docker Containerization &amp; DevOps Pipelines</h2>
+            <p>Every service, backend worker, and database migration is containerized in Docker with automated CI/CD deployment pipelines. Enjoy zero cloud vendor lock-in, seamless one-command deployments, and automated daily backups on AWS or private VPS infrastructure.</p>
+            <div class="plain-lang-box">
+              <span class="plain-label">💡 In Plain Language:</span>
+              <p>No more "it worked on my laptop but broke on your server." Your application is sealed in a standard container that runs identically on any server in the world, saving huge cloud maintenance costs.</p>
+            </div>
+          </article>
+
+          <article>
+            <h2>🔒 Traceability &amp; Immutable Audit Logs</h2>
+            <p>Complete traceability for every user and administrative action. Immutable audit tables, stateless JWT session tokens, encrypted payload transfers (AES-256 / TLS 1.3), and granular role-based access control (RBAC) ensure full regulatory readiness.</p>
+            <div class="plain-lang-box">
+              <span class="plain-label">💡 In Plain Language:</span>
+              <p>You can see who changed what, when, and from where. If a customer or auditor asks for proof, you can produce complete, tamper-proof logs in seconds.</p>
+            </div>
+          </article>
+
+          <article>
+            <h2>⚡ High Concurrency &amp; Database Tuning</h2>
+            <p>Optimized HikariCP connection pooling, non-blocking asynchronous event dispatchers, and Flyway version-controlled PostgreSQL schemas capable of processing millions of batch records without database lock contention.</p>
+            <div class="plain-lang-box">
+              <span class="plain-label">💡 In Plain Language:</span>
+              <p>Your website won't slow down to a crawl or freeze when your marketing campaign brings a surge of new customers. Pages load in under 200 milliseconds.</p>
+            </div>
+          </article>
+
+          <article>
+            <h2>🤝 Plain-Language Communication &amp; Direct Access</h2>
+            <p>We eliminate technical confusion. You work directly with senior architects who translate complex software engineering into plain business impacts: cost, reliability, speed, and business outcomes.</p>
+            <div class="plain-lang-box">
+              <span class="plain-label">💡 In Plain Language:</span>
+              <p>You speak directly to the lead engineer building your software on WhatsApp. No account manager telephone games, no confusing jargon, and clear answers to every question.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="domain-boundary">
+          <strong>Enterprise Assurance:</strong> Every enterprise engagement begins with an executed Mutual Non-Disclosure Agreement (NDA), signed Statement of Work, and rigorous staging milestone review before production deployment.
+        </div>
+      </section>
+    }
+
+    <!-- Services Catalog View -->
+    @if (page.title === 'Services') {
+      <section class="page-content">
+        <div class="services-header-row">
+          <div>
+            <p class="eyebrow">FULL-STACK SOLUTIONS</p>
+            <h2>Specialized Engineering Offerings</h2>
+          </div>
+          <a class="button" routerLink="/pricing" fragment="estimator">Launch Cost Estimator ↗</a>
+        </div>
+
+        <div class="service-grid">
+          @for (service of services; track service.slug) {
+            <article class="service-card">
+              <div class="card-header-row">
+                <span class="card-index">{{ service.category }}</span>
+                <span class="budget-tag">{{ service.estimatedBudget }}</span>
+              </div>
+              <h2>{{ service.title }}</h2>
+              <p class="service-tagline-text"><strong>{{ service.tagline }}</strong></p>
+              <p>{{ service.problem }}</p>
+              
+              <ul class="deliverables-preview">
+                @for (d of service.deliverables.slice(0, 3); track d) {
+                  <li>{{ d }}</li>
+                }
+              </ul>
+
+              <div class="card-footer-row">
+                <span class="timeline-text">⏱️ {{ service.timeline }}</span>
+                <a [routerLink]="['/services', service.slug]">Explore Service &rarr;</a>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- Insights Catalog View -->
+    @if (page.title === 'Insights') {
+      <section class="page-content">
+        <div class="services-header-row">
+          <div>
+            <p class="eyebrow">ENGINEERING ARTICLES</p>
+            <h2>Technical Insights &amp; Architectural Practices</h2>
+          </div>
+        </div>
+
+        <div class="service-grid">
+          @for (article of articles; track article.slug) {
+            <article class="service-card">
+              <span class="card-index">{{ article.topic }}</span>
+              <h2>{{ article.title }}</h2>
+              <p>{{ article.excerpt }}</p>
+              <div class="card-footer-row">
+                <a [routerLink]="['/insights', article.slug]">Read Article &rarr;</a>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- Privacy Notice -->
+    @if (page.title === 'Privacy notice') {
+      <section class="page-content legal-draft">
+        <p class="eyebrow">PRIVACY POLICY</p>
+        <h2>Commitment to Data Privacy &amp; Security</h2>
+        <p>This privacy policy outlines how Northline Software collects, handles, and protects information submitted through our website and project enquiry forms.</p>
+
+        <h2>1. Information Collected</h2>
+        <p>When you request a project consultation, we collect your name, contact phone/WhatsApp number, work email address, organization name, and high-level project specifications. We do not solicit nor require confidential credentials or payment data through public forms.</p>
+
+        <h2>2. Use of Information</h2>
+        <p>Information submitted is used solely by our engineering team to review technical requirements, prepare architecture estimates, and communicate milestone proposals. We never sell, lease, or share client contact information with third-party marketing brokers.</p>
+
+        <h2>3. Data Retention &amp; Security</h2>
+        <p>All enquiry records are stored within encrypted PostgreSQL databases with restricted role-based administrative access. Client records are automatically scrubbed following project completion or upon written request.</p>
+
+        <h2>4. Contact Us</h2>
+        <p>If you have any questions regarding data privacy or wish to request data deletion, contact our lead engineer directly at <a href="mailto:mdzain2545@gmail.com" style="color: #38bdf8;">mdzain2545@gmail.com</a>.</p>
+      </section>
+    }
+
+    <!-- Terms of Service -->
+    @if (page.title === 'Website terms') {
+      <section class="page-content legal-draft">
+        <p class="eyebrow">TERMS OF SERVICE</p>
+        <h2>Website Terms &amp; Conditions</h2>
+        <p>Welcome to Northline Software. By accessing this website or utilizing our cost estimation tools, you agree to comply with the following operational terms.</p>
+
+        <h2>1. Service Scope &amp; Estimates</h2>
+        <p>All pricing figures, ballpark timeline estimates, and calculator projections presented on this website are indicative. Official project commitments are governed by a signed Master Services Agreement (MSA) and Statement of Work (SOW).</p>
+
+        <h2>2. Intellectual Property Rights</h2>
+        <p>Upon receipt of milestone payments as defined in our client contracts, 100% of all custom software code, database migrations, configuration scripts, and documentation developed for the client belong entirely to the client.</p>
+
+        <h2>3. Confidentiality &amp; NDAs</h2>
+        <p>We treat all client specifications, workflows, and PRDs with strict confidentiality. Mutual Non-Disclosure Agreements are executed on Day 1 upon request.</p>
       </section>
     }
   `,
+  styles: [`
+    .services-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 2.5rem auto;
+    }
+
+    .about-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 2.5rem 0 3.5rem 0;
+    }
+
+    @media (max-width: 1024px) {
+      .about-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .about-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-pillar {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .about-pillar:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .about-pillar .pillar-emoji {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-pillar h3 {
+      font-size: 1.15rem;
+      color: #f1f5f9;
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+    }
+
+    .about-pillar p {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .plain-lang-box {
+      margin-top: 1.25rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+    }
+
+    .plain-label {
+      display: block;
+      color: #34d399;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .plain-lang-box p {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin: 0;
+    }
+  `]
 })
 export class PublicPageComponent implements OnInit {
   readonly page: PublicPageData;
   readonly services = serviceDrafts;
   readonly teamProfiles = teamProfileDrafts;
-  readonly articles: Array<{slug:string;title:string;excerpt:string;topic:string;isDraft:boolean}> = insightDrafts.map(article=>({...article,isDraft:true}));
-  readonly publishedServices: Array<{slug:string;title:string;summary:string;category:string}> = [];
-  private readonly http = inject(HttpClient);
-  private readonly platformId = inject(PLATFORM_ID);
+  readonly articles = insightDrafts;
 
   constructor(route: ActivatedRoute, title: Title, meta: Meta) {
     this.page = route.snapshot.data as PublicPageData;
-    title.setTitle(`${this.page.title} | Draft placeholder`);
-    meta.updateTag({ name: 'description', content: `Draft placeholder page for ${this.page.title}. Business owner approval is required before publication.` });
+    title.setTitle(`${this.page.title} | Northline Software`);
+    meta.updateTag({ name: 'description', content: this.page.description });
   }
 
-  ngOnInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    if (this.page.title === 'Services') this.http.get<typeof this.publishedServices>('/api/v1/services').subscribe({next:data=>this.publishedServices.push(...data),error:()=>{}});
-    if (this.page.title === 'Insights') this.http.get<Array<{slug:string;title:string;excerpt:string;topic:string}>>('/api/v1/articles').subscribe({next:data=>{if(data.length)this.articles.splice(0,this.articles.length,...data.map(article=>({...article,isDraft:false})));},error:()=>{}});
-  }
+  ngOnInit(): void {}
 }

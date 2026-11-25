@@ -31,7 +31,7 @@ public class AdminController {
     @GetMapping("/leads")
     public List<Map<String,Object>> leads(@RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="25") int size) {
         int safePage = Math.max(0, Math.min(page, 10_000)); int safeSize = Math.max(1, Math.min(size, 100));
-        return db.queryForList("SELECT id,name,email,organization,project_type,message,timeline,budget_range,status,created_at FROM lead ORDER BY created_at DESC LIMIT ? OFFSET ?", safeSize, safePage * safeSize);
+        return db.queryForList("SELECT id,name,email,phone,organization,project_type,message,timeline,budget_range,status,created_at FROM lead ORDER BY created_at DESC LIMIT ? OFFSET ?", safeSize, safePage * safeSize);
     }
 
     @PatchMapping("/leads/status")
