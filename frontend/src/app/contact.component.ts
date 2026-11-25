@@ -82,7 +82,7 @@ import { SiteSettingsService } from './site-settings.service';
                 <div class="cp-info">
                   <span class="cp-label">CALL US</span>
                   <span class="cp-value">{{ settings.phone }}</span>
-                  <span class="cp-sub">Mon–Sat: 9:00 AM – 7:00 PM IST</span>
+                  <span class="cp-sub">Mon–Sat: 9:00 AM – 7:00 PM</span>
                 </div>
               </a>
 
@@ -125,7 +125,7 @@ import { SiteSettingsService } from './site-settings.service';
                 </div>
                 <div class="cp-info">
                   <span class="cp-label">WORKING HOURS</span>
-                  <span class="cp-value">Mon–Sat: 9:00 AM – 7:00 PM IST</span>
+                  <span class="cp-value">Mon–Sat: 9:00 AM – 7:00 PM</span>
                   <span class="cp-sub">Closed on Sundays</span>
                 </div>
               </div>

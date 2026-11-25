@@ -67,7 +67,7 @@ public class LeadController {
         if (sender == null || notifyTo.isBlank() || mailFrom.isBlank()) return;
         try {
             var istTimestamp = java.time.ZonedDateTime.now(java.time.ZoneId.of("Asia/Kolkata"))
-                    .format(java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm:ss a z"));
+                    .format(java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy hh:mm a"));
             var mail = new SimpleMailMessage();
             mail.setFrom(mailFrom); mail.setTo(notifyTo); mail.setSubject("New software services enquiry (" + istTimestamp + ")");
             mail.setText("A new enquiry was received on " + istTimestamp + " (reference " + reference + ").\nName: " + request.name()
