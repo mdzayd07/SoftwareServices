@@ -16,7 +16,9 @@ spring:
   flyway:
     enabled: true
   jackson:
-    time-zone: UTC
+    time-zone: Asia/Kolkata
+    serialization:
+      write-dates-as-timestamps: false
   mail:
     host: ${MAIL_HOST:localhost}
     port: ${MAIL_PORT:25}

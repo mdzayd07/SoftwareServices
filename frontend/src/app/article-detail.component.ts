@@ -28,7 +28,7 @@ interface ArticleContent {
         <p class="article-byline">
           {{ article.author_display_name || 'Northline Architecture Team · Technical Practice' }}
           @if (article.published_at) {
-            <span> · {{ article.published_at | date }}</span>
+            <span> · {{ article.published_at | date:'dd MMM yyyy':'Asia/Kolkata' }}</span>
           }
         </p>
 
