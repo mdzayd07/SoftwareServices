@@ -15,6 +15,6 @@ app.use((request, response, next) => {
 export const reqHandler = createNodeRequestHandler(app);
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  const port = Number(process.env['PORT'] ?? 4000);
+  const port = Number(process.env['PORT'] ?? 4010);
   app.listen(port, () => console.log(`Frontend server listening on port ${port}`));
 }

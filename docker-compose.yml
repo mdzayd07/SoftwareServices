@@ -9,6 +9,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secureProductionDbPassword123}
     volumes:
       - pgdata:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-services_site} -d ${POSTGRES_DB:-services_site}"]
       interval: 5s
@@ -27,7 +29,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "${BACKEND_PORT:-8085}:8080"
+      - "127.0.0.1:${BACKEND_PORT:-8085}:8080"
     environment:
       DB_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-services_site}
       DB_USERNAME: ${POSTGRES_USER:-services_site}
@@ -53,7 +55,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "${FRONTEND_PORT:-4010}:4000"
+      - "127.0.0.1:${FRONTEND_PORT:-4010}:4000"
     environment:
       PORT: 4000
       NODE_ENV: production
@@ -64,6 +66,8 @@ services:
     image: nginx:alpine
     container_name: northline_nginx
     restart: unless-stopped
+    profiles:
+      - with-nginx
     ports:
       - "${APP_PORT:-8090}:80"
     volumes:
